@@ -4,9 +4,38 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ExamTwoQuestions.PointOfSale"
+             xmlns:local1="clr-namespace:PointOfSale"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock>Customize Cobbler</TextBlock>
-    </Grid>
+    
+    <UserControl.Resources>
+        <local1:EnumMatchToBooleanConverter x:Key="enumConverter"/>
+    </UserControl.Resources>
+    
+    <StackPanel>
+        <TextBlock FontSize="24">Customize Cobbler</TextBlock>
+
+        <CheckBox IsChecked="{Binding Path=WithIceCream}" FontSize="18" Margin="8,8,8,0" VerticalContentAlignment="Center">With Ice Cream? </CheckBox>
+        
+        <StackPanel Orientation="Horizontal">
+            <StackPanel.Resources>
+                <Style TargetType="RadioButton">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    <Setter Property="FontSize" Value="18px"/>
+                    <Setter Property="Margin" Value="8,16,8,16"/>
+                </Style>
+            </StackPanel.Resources>
+            
+            <RadioButton Content="Peach" GroupName="Size" Grid.Column="0" IsChecked="{Binding Path=Fruit, Mode=TwoWay,
+                Converter={StaticResource enumConverter}, ConverterParameter=Peach}"/>
+
+            <RadioButton Content="Cherry" GroupName="Size" Grid.Column="1" IsChecked="{Binding Path=Fruit, Mode=TwoWay,
+                Converter={StaticResource enumConverter}, ConverterParameter=Cherry}"/>
+
+            <RadioButton Content="Blueberry" GroupName="Size" Grid.Column="2" IsChecked="{Binding Path=Fruit, Mode=TwoWay,
+                Converter={StaticResource enumConverter}, ConverterParameter=Blueberry}"/>
+        </StackPanel>
+
+    </StackPanel>
 </UserControl>

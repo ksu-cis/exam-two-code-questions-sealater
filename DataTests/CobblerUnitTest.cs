@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using ExamTwoCodeQuestions.Data;
 using Xunit;
 
@@ -71,6 +72,60 @@ namespace ExamTwoCodeQuestions.DataTests
         {
             var cobbler = new Cobbler();
             Assert.IsAssignableFrom<IOrderItem>(cobbler);
+        }
+
+        // Added tests for test //
+
+        // Should implement the INotifyPropertyChanged Interface
+        [Fact]
+        public void ShouldImplementINotifyPropertyChangedInterface()
+        {
+            var cobbler = new Cobbler();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(cobbler);
+        }
+
+        // Changing the Fruit property should invoke PropertyChanged for Fruit
+        [Fact]
+        public void ChangingFruitShouldInvokePropertyChangedForFruit()
+        {
+            var cobbler = new Cobbler();
+            Assert.PropertyChanged(cobbler, "Fruit", () =>
+            {
+                cobbler.Fruit = FruitFilling.Cherry;
+            });
+        }
+
+        // Changing the WithIceCream property should invoke PropertyChanged for WithIceCream
+        [Fact]
+        public void ChangingWithIceCreamShouldInvokePropertyChangedForWithIceCream()
+        {
+            var cobbler = new Cobbler();
+            Assert.PropertyChanged(cobbler, "WithIceCream", () =>
+            {
+                cobbler.WithIceCream = false;
+            });
+        }
+
+        // Changing the WithIceCream property should invoke PropertyChanged for Price
+        [Fact]
+        public void ChangingWithIceCreamShouldInvokePropertyChangedForPrice()
+        {
+            var cobbler = new Cobbler();
+            Assert.PropertyChanged(cobbler, "Price", () =>
+            {
+                cobbler.WithIceCream = false;
+            });
+        }
+
+        // Changing the WithIceCream property should invoke PropertyChanged for SpecialInstructions
+        [Fact]
+        public void ChangingWithIceCreamShouldInvokePropertyChangedForSpecialInstructions()
+        {
+            var cobbler = new Cobbler();
+            Assert.PropertyChanged(cobbler, "SpecialInstructions", () =>
+            {
+                cobbler.WithIceCream = false;
+            });
         }
     }
 }
